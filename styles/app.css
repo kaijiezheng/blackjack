@@ -22,4 +22,11 @@
 .alert {
   height: 30px;
   font-size: 100px;
+  font-family: 'Helvetica';
+  margin-top: 40px;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: 'Helvetica';
 }
