@@ -1,12 +1,15 @@
 class window.CardView extends Backbone.View
+
   className: 'card'
 
-  template: _.template '<%= rankName %> of <%= suitName %>'
+  template: _.template '<img src=<%= cardURL %>>'
 
-  initialize: -> @render()
+  initialize: ->
+    @render()
+    @model.on 'flip', @render
 
   render: ->
     @$el.children().detach()
-    @$el.html @template @model.attributes
+    url = if @model.get 'revealed' then "img/cards/" + @model.attributes.rankName.toString().toLowerCase() + "-" + @model.attributes.suitName.toString().toLowerCase() + ".png" else "img/card-back.png"
+    @$el.html @template {cardURL: url}
     @$el.addClass 'covered' unless @model.get 'revealed'
-

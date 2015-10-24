@@ -11,8 +11,8 @@ class window.BlackjackView extends Backbone.View
       @model.get('dealerHand').hit()
       @checkWinner(e)
     'click .stand-button': (e) ->
-      @model.get('playerHand').stand()
-      @checkWinner(e)
+      @model.get('dealerHand').first().flip()
+      setTimeout(@checkWinner.bind(@, e), 1000)
 
   initialize: ->
     @render()
@@ -30,7 +30,7 @@ class window.BlackjackView extends Backbone.View
         @alertWinner 'player'
       else if playerScores[0] > 21 and playerScores[1] > 21
         @alertWinner 'dealer'
-    else if e.target.className == 'stand-button'
+    else # if e.target.className == 'stand-button'
       dealerScores = @model.get('dealerHand').scores(true)
       playerScore = 0
       dealerScore = 0
@@ -38,17 +38,16 @@ class window.BlackjackView extends Backbone.View
         playerScore = playerScores[1]
       else
         playerScore = playerScores[0]
-      
-      console.log playerScores
-      console.log playerScore
-
-      console.log dealerScores
-      console.log dealerScore
 
       if dealerScores[0] > 21
         @alertWinner 'player'
+
+      if dealerScores[1] <= 21
+        dealerScore = dealerScores[1]
+      else
+        dealerScore = dealerScores[0]
   
-      if playerScore > dealerScore
+      if playerScore >= dealerScore
         @alertWinner 'player' 
       else
         @alertWinner 'dealer'

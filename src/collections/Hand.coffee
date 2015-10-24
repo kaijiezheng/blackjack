@@ -28,12 +28,3 @@ class window.Hand extends Backbone.Collection
       [dealerScore, dealerScore + 10 * @hasAce()]
     else
       [@minScore(), @minScore() + 10 * @hasAce()]
-
-  stand: ->
-
-    # player score is already calculated
-      # choose greatest valid score if ace is present
-    # trigger has to alert AppView that game has ended
-      # compare player score to dealer score
-      # alert who is winner
-      # restart game with new deck or proceed to next round
