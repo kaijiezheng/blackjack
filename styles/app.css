@@ -8,10 +8,18 @@
 }
 
 .covered > img {
-  /*background-color: black;*/
   background-image: url("../img/card-back.png")
 }
 
 .hand {
   overflow: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.alert {
+  height: 30px;
+  font-size: 100px;
 }
